@@ -7,6 +7,7 @@
             font-family: Arial, sans-serif;
             text-align: center;
             overflow: hidden; /* Prevent vertical scrollbars */
+            background-color: #f8f8f8; /* Attractive background color */
         }
         h1 {
             color: red;
@@ -24,6 +25,19 @@
                 top: 100%;
                 opacity: 0;
             }
+        }
+
+        button {
+            background-color: #ff4081; /* Attractive button color */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #ff0066; /* Hover color */
         }
     </style>
 </head>
@@ -51,8 +65,8 @@
                 symbol.remove();
             });
 
-            // Show multiple love symbols shower
-            var numSymbols = 20; // Number of love symbols to shower
+            // Show minimum 5 love symbols shower
+            var numSymbols = Math.max(5, Math.floor(Math.random() * 15)); // Random number of symbols between 5 and 15
             for (let i = 0; i < numSymbols; i++) {
                 var loveSymbol = document.createElement("div");
                 loveSymbol.className = "love-symbol";
