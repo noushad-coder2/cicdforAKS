@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: newlovecalc
-        image: docker.io/noushadcoder/noushadcoder/newlovecalc:latets
+        image: docker.io/noushadcoder/newlovecalc:latets
         ports:
         - containerPort: 80
 
