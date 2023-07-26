@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: newlovecalc-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: newlovecalc-app
+  template:
+    metadata:
+      labels:
+        app: newlovecalc-app
+    spec:
+      containers:
+      - name: newlovecalc
+        image: docker.io/noushadcoder/noushadcoder/newlovecalc:latets
+        ports:
+        - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: newlovecalc-service
+spec:
+  selector:
+    app: newlovecalc-app
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+
