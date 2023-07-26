@@ -1,27 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Love Calculator</title>
+    <title>Ambition Calculator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #964B00; /* Brown background color */
-            color: green; /* Green font color */
+            background-color: #f8f8f8; /* Light gray background color */
+            color: #333; /* Dark gray font color */
         }
         h1 {
-            color: red;
-            animation: blink 1s infinite; /* Blinking red color for title */
-        }
-        .love-symbol {
-            font-size: 48px;
-            color: red;
-            position: absolute;
-            top: -50px;
-            animation: shower 2s linear infinite;
+            color: #007BFF; /* Blue title color */
+            animation: blink 1s infinite; /* Blinking effect for the title */
         }
         button {
-            background-color: red; /* Red button color */
+            background-color: #007BFF; /* Blue button color */
             color: white;
             border: none;
             padding: 10px 20px;
@@ -29,60 +22,66 @@
             border-radius: 5px;
         }
         button:hover {
-            background-color: #ff3333; /* Hover color */
+            background-color: #0056b3; /* Hover color */
         }
         @keyframes blink {
             0%, 100% {
-                color: red;
+                color: #007BFF; /* Blue title color */
             }
             50% {
-                color: white;
-            }
-        }
-        @keyframes shower {
-            to {
-                top: 100%;
-                opacity: 0;
+                color: #333; /* Dark gray font color */
             }
         }
     </style>
 </head>
 <body>
-    <h1>Love Calculator</h1>
+    <h1>Ambition Calculator</h1>
     <form onsubmit="return false">
-        <label for="husband">Husband's Name:</label>
-        <input type="text" id="husband" required>
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" required>
         <br>
-        <label for="wife">Wife's Name:</label>
-        <input type="text" id="wife" required>
+        <label for="age">Your Age:</label>
+        <input type="number" id="age" required>
         <br>
-        <button type="button" onclick="calculateLove()">Calculate Love</button>
+        <label for="dream">Your Biggest Dream:</label>
+        <input type="text" id="dream" required>
+        <br>
+        <button type="button" onclick="calculateAmbition()">Calculate Ambition</button>
     </form>
 
+    <div id="ambitionResult" style="display: none; margin-top: 20px;"></div>
+
     <script>
-        function calculateLove() {
-            var husband = document.getElementById("husband").value;
-            var wife = document.getElementById("wife").value;
-            var lovePercentage = Math.floor(Math.random() * 101);
+        function calculateAmbition() {
+            var name = document.getElementById("name").value;
+            var age = document.getElementById("age").value;
+            var dream = document.getElementById("dream").value;
 
-            // Show love percentage in blinking red color
-            var lovePercentageText = document.createElement("div");
-            lovePercentageText.style.fontSize = "24px";
-            lovePercentageText.style.color = "red";
-            lovePercentageText.innerText = `Love Percentage: ${lovePercentage}%`;
-            lovePercentageText.style.animation = "blink 1s infinite"; // Blinking red color for result
-            document.body.appendChild(lovePercentageText);
+            // Randomly select the future profession based on answers
+            var professions = [
+                "Astronaut",
+                "Rock Star",
+                "President",
+                "Scientist",
+                "Actor",
+                "Artist",
+                "Chef",
+                "Entrepreneur",
+                "Writer",
+                "Athlete",
+                "Engineer",
+                "Doctor",
+                "Lawyer",
+                "Teacher"
+            ];
 
-            // Show 5 to 10 love symbols shower
-            var numSymbols = Math.floor(Math.random() * 6) + 5; // Random number of symbols between 5 and 10
-            for (let i = 0; i < numSymbols; i++) {
-                var loveSymbol = document.createElement("div");
-                loveSymbol.className = "love-symbol";
-                loveSymbol.innerText = "❤️";
-                loveSymbol.style.left = Math.random() * 100 + "vw"; // Random horizontal position
-                loveSymbol.style.animationDuration = Math.random() * 2 + 1 + "s"; // Random animation duration
-                document.body.appendChild(loveSymbol);
-            }
+            var randomIndex = Math.floor(Math.random() * professions.length);
+            var profession = professions[randomIndex];
+
+            // Display the result
+            var resultDiv = document.getElementById("ambitionResult");
+            resultDiv.innerHTML = `<p>Dear ${name}, at the age of ${age}, your biggest dream to become a ${dream}, suggests that you may become a future <strong>${profession}</strong>! Dream big and work hard to achieve your ambitions!</p>`;
+            resultDiv.style.display = "block";
         }
     </script>
 </body>
