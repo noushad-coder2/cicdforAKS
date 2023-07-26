@@ -1,48 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Love Calculator for couples</title>
+    <title>Love Calculator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            overflow: hidden; /* Prevent vertical scrollbars */
-            background-color: #f8f8f8; /* Attractive background color */
+            background-color: #964B00; /* Brown background color */
+            color: green; /* Green font color */
         }
         h1 {
             color: red;
+            animation: blink 1s infinite; /* Blinking red color for title */
         }
         .love-symbol {
-            font-size: 100px;
+            font-size: 48px;
             color: red;
             position: absolute;
             top: -50px;
             animation: shower 2s linear infinite;
         }
-
+        button {
+            background-color: red; /* Red button color */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #ff3333; /* Hover color */
+        }
+        @keyframes blink {
+            0%, 100% {
+                color: red;
+            }
+            50% {
+                color: white;
+            }
+        }
         @keyframes shower {
             to {
                 top: 100%;
                 opacity: 0;
             }
         }
-
-        button {
-            background-color: #ff4081; /* Attractive button color */
-            color: brown;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        button:hover {
-            background-color: #ff0066; /* Hover color */
-        }
     </style>
 </head>
 <body>
-    <h1>Love Calculator For couples</h1>
+    <h1>Love Calculator</h1>
     <form onsubmit="return false">
         <label for="husband">Husband's Name:</label>
         <input type="text" id="husband" required>
@@ -59,14 +65,16 @@
             var wife = document.getElementById("wife").value;
             var lovePercentage = Math.floor(Math.random() * 101);
 
-            // Remove existing love symbols
-            var existingSymbols = document.querySelectorAll(".love-symbol");
-            existingSymbols.forEach(function (symbol) {
-                symbol.remove();
-            });
+            // Show love percentage in blinking red color
+            var lovePercentageText = document.createElement("div");
+            lovePercentageText.style.fontSize = "24px";
+            lovePercentageText.style.color = "red";
+            lovePercentageText.innerText = `Love Percentage: ${lovePercentage}%`;
+            lovePercentageText.style.animation = "blink 1s infinite"; // Blinking red color for result
+            document.body.appendChild(lovePercentageText);
 
-            // Show minimum 5 love symbols shower
-            var numSymbols = Math.max(5, Math.floor(Math.random() * 15)); // Random number of symbols between 5 and 15
+            // Show 5 to 10 love symbols shower
+            var numSymbols = Math.floor(Math.random() * 6) + 5; // Random number of symbols between 5 and 10
             for (let i = 0; i < numSymbols; i++) {
                 var loveSymbol = document.createElement("div");
                 loveSymbol.className = "love-symbol";
@@ -75,12 +83,6 @@
                 loveSymbol.style.animationDuration = Math.random() * 2 + 1 + "s"; // Random animation duration
                 document.body.appendChild(loveSymbol);
             }
-
-            // Display love percentage
-            var lovePercentageText = document.createElement("div");
-            lovePercentageText.style.fontSize = "24px";
-            lovePercentageText.innerText = `Love Percentage: ${lovePercentage}%`;
-            document.body.appendChild(lovePercentageText);
         }
     </script>
 </body>
