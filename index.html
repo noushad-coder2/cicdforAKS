@@ -6,6 +6,7 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
+            overflow: hidden; /* Prevent vertical scrollbars */
         }
         h1 {
             color: red;
@@ -50,16 +51,15 @@
                 symbol.remove();
             });
 
-            // Show love symbol shower
-            var showerContainer = document.createElement("div");
-            showerContainer.style.position = "relative";
-            document.body.appendChild(showerContainer);
-
-            for (let i = 0; i < 20; i++) {
+            // Show multiple love symbols shower
+            var numSymbols = 20; // Number of love symbols to shower
+            for (let i = 0; i < numSymbols; i++) {
                 var loveSymbol = document.createElement("div");
                 loveSymbol.className = "love-symbol";
                 loveSymbol.innerText = "❤️";
-                showerContainer.appendChild(loveSymbol);
+                loveSymbol.style.left = Math.random() * 100 + "vw"; // Random horizontal position
+                loveSymbol.style.animationDuration = Math.random() * 2 + 1 + "s"; // Random animation duration
+                document.body.appendChild(loveSymbol);
             }
 
             // Display love percentage
