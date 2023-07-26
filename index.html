@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Love Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: red;
+        }
+        .love-symbol {
+            font-size: 48px;
+            color: red;
+            position: absolute;
+            top: -50px;
+            animation: shower 2s linear infinite;
+        }
+
+        @keyframes shower {
+            to {
+                top: 100%;
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Love Calculator</h1>
+    <form onsubmit="return false">
+        <label for="husband">Husband's Name:</label>
+        <input type="text" id="husband" required>
+        <br>
+        <label for="wife">Wife's Name:</label>
+        <input type="text" id="wife" required>
+        <br>
+        <button type="button" onclick="calculateLove()">Calculate Love</button>
+    </form>
+
+    <script>
+        function calculateLove() {
+            var husband = document.getElementById("husband").value;
+            var wife = document.getElementById("wife").value;
+            var lovePercentage = Math.floor(Math.random() * 101);
+
+            // Remove existing love symbols
+            var existingSymbols = document.querySelectorAll(".love-symbol");
+            existingSymbols.forEach(function (symbol) {
+                symbol.remove();
+            });
+
+            // Show love symbol shower
+            var showerContainer = document.createElement("div");
+            showerContainer.style.position = "relative";
+            document.body.appendChild(showerContainer);
+
+            for (let i = 0; i < 20; i++) {
+                var loveSymbol = document.createElement("div");
+                loveSymbol.className = "love-symbol";
+                loveSymbol.innerText = "❤️";
+                showerContainer.appendChild(loveSymbol);
+            }
+
+            // Display love percentage
+            var lovePercentageText = document.createElement("div");
+            lovePercentageText.style.fontSize = "24px";
+            lovePercentageText.innerText = `Love Percentage: ${lovePercentage}%`;
+            document.body.appendChild(lovePercentageText);
+        }
+    </script>
+</body>
+</html>
